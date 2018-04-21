@@ -1,0 +1,101 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), patients_path %>
+<div class="container ">
+<p id="notice"><%= notice %></p>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 center"">
+				<h2><i class="fa fa-medkit fontawesome"></i>  Personal Information </h2>
+				
+				<h3><%= @patient.name %></h3>
+
+				<p><%= Date.parse(@patient.dob).strftime("%d/%m/%Y") %></p>
+
+				<p><%= @patient.address %></p>
+
+				<p><%= @patient.phone %></p>
+
+				<p><%= @patient.allergy_condition %></p>
+
+				<br>
+				<i class="fa fa-edit fontawesome"></i> <%= link_to 'Edit Patient Record', edit_patient_path(@patient) %> 
+			</div>
+			<div class="col-md-4">				
+
+			</div>
+		</div>
+		<hr>
+
+		<!--Rails Ordering Activerecord entries From: http://www.chrisjmendez.com/2016/12/30/rails-order-by-desc/ -->
+		<div class="row">
+			<div class="col-md-8">
+				<h2><i class="fa fa-history fontawesome"></i> Visit History</h2>
+				<hr>
+				<% @patient.visits.order(date: :desc).each do |visit| %>
+					<p>
+						<strong>Date:</strong>
+						<%= Date.parse(visit.date).strftime("%d/%m/%Y") %>
+					</p>
+
+					<p>
+						<strong>Infection/Injury:</strong>
+						<%= visit.infection_injury %>
+					</p>
+
+					<p>
+						<strong>Visit Desctiption:</strong>
+						<%= visit.visit_description %>
+					</p>
+
+					<p>
+						<strong>Special Observations:</strong>
+						<%= visit.special_observations %>
+					</p>
+
+					<hr>
+				<% end %>
+			</div>
+			<div class="col-md-4">
+				<h2> <i class="fa fa-plus fontawesome"></i> New Visit</h2>
+				<hr>
+				<%= form_for([@patient,@patient.visits.build]) do |f| %>
+				<p>
+					<%= f.label :date %> <br />
+					<%= f.date_field :date ,  class: "form-control"%>
+				</p>
+
+				<p>
+					<%= f.label :infection_injury %> <br />
+					<%= f.text_field :infection_injury ,  class: "form-control"%>
+				</p>
+
+				<p>
+					<%= f.label :visit_description %> <br />
+					<%= f.text_area :visit_description ,  class: "form-control"%>
+				</p>
+
+				<p>
+					<%= f.label :special_observations %> <br />
+					<%= f.text_field :special_observations ,  class: "form-control"%>
+				</p>
+
+				<p>
+				<%= f.submit "Add Visit", class: 'btn btn-success' %>
+				</p>
+				<% end %>
+			</div>
+		</div>
+
+
+<br>
+
+	<div class="row">
+		<div class="col-md-5">		
+		</div>
+	</div>	
+
+
+	<div class="row">
+		<div class="col-md-12">			
+		</div>
+	</div>
+</div>

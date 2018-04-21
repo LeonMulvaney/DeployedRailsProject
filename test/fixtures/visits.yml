@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  infection_injury: MyString
+  visit_description: MyString
+  special_observations: MyString
+  patient: one
+
+two:
+  date: MyString
+  infection_injury: MyString
+  visit_description: MyString
+  special_observations: MyString
+  patient: two

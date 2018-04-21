@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="col-md-6">
+  <%= form_with(model: appointment, local: true) do |form| %>
+    <% if appointment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+        <ul>
+        <% appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Using date date_field helper, populate the date_field with model value From: https://stackoverflow.com/questions/29050095/simple-form-date-field-not-populating-for-edit/29052923#29052923 -->
+    <div class="field">
+      <%= form.label :date %>
+      <%= form.date_field :date,  id: :appointment_date , value: form.object.date,  class: "form-control"%>
+    </div>
+
+    <div class="field">
+      <%= form.label :time %>
+      <%= form.select :time, ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 AM', '13:00 PM', '13:30 PM', '14:00 PM', '14:30 PM', '15:00 PM','15:30 PM','16:00 PM','16:30 PM','17:00 PM','17:30 PM', ] ,{}, {class: " form form-group form-control"}  %>
+    </div>
+  <!-- Target other model and get values for collection_select From: https://stackoverflow.com/questions/14113057/how-to-have-a-drop-down-select-field-in-a-rails-form 
+    Collection_Select From: http://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select-->
+
+    <!--Styling Collections From: https://stackoverflow.com/questions/41598870/bootstrap-and-collection-select -->
+    <div class="field">
+      <%= form.label :patient %>
+
+      <%= form.collection_select(:patient, Patient.all.order(:name), :name, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+
+    <div class="field">
+      <%= form.label :visited %>
+      <%= form.select :visited, ['','True', 'False' ] ,{}, {class: " form form-group form-control"}  %>
+
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Submit", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+  </div>
+</div>

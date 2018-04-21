@@ -1,0 +1,68 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), root_path %>
+<p id="notice"><%= notice %></p>
+
+<!--Ransack Search Gem From: https://github.com/activerecord-hackery/ransack -->
+<h1>Patients</h1>
+
+<div class ="row">
+<div class ="col-md-4">
+    <%= search_form_for @q do |f| %>
+   <%= f.label "Search Patients (Name, Address, Phone)" %>
+   <!-- Search the db using ransack, parameters From: https://github.com/activerecord-hackery/ransack -->
+  <%= f.search_field :name_or_address_or_phone_or_allergy_condition_cont, class: 'form-control input-sm'%>
+  <%= f.label "Search via DOB:" %>
+  <%= f.date_field :dob_cont,  class: 'form-control input-sm '%>
+  <br>
+  <%= f.submit class: 'btn btn-success' %>
+  <%= link_to "Reset Filter",   patients_path, class: 'btn btn-default' %>
+<% end %>
+  </div>
+  <div class ="col-md-5">
+  </div>
+  <div class ="col-md-3">
+    <p>Condition Overview</p>
+    <%= pie_chart @patients.group(:allergy_condition).count %> 
+  </div>
+</div>
+
+<h2><i class="fa fa-sort fontawesome"></i> Sort via Headings</h2>
+<hr>
+<table class = "table table-striped table-hover">
+  <thead>
+    <tr>
+      <!-- Sortable columns From: 
+      https://github.com/activerecord-hackery/ransack -->
+      <th class ="h5"><%= sort_link(@q, :name) %></th>
+      <th class ="h5"><%= sort_link(@q, :dob) %></th>
+      <th class ="h5"><%= sort_link(@q, :address) %></th>
+      <th class ="h5"><%= sort_link(@q, :phone) %></th>
+      <th class ="h5"><%= sort_link(@q, :allergy_condition) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    <% @patients.each do |patient| %> 
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= Date.parse(patient.dob).strftime("%d/%m/%Y")%></td>
+        <td><%= patient.address %></td>
+        <td><%= patient.phone %></td>
+        <td><%= patient.allergy_condition %></td>
+        <td><%= link_to 'View Medical History', patient %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient)%></td>
+        <td><%= link_to 'Remove', patient, method: :delete, data: { confirm: 'Are you sure?' }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= will_paginate @patients %>
+
+<hr>
+  <i class="fa fa-plus fontawesome"></i> <%= link_to 'New Patient', new_patient_path %>
+  <br>
+  <br>
+  <i class="fa fa-download fontawesome"></i> <%= link_to "Download Patient Overview (Current Selection)", patients_path(params.merge(:format => 'pdf')), target: "_blank" %>
+

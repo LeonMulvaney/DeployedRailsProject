@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Date:</strong>
+        <%= Date.parse(@hospital_referral.date).strftime("%d-%m-%Y") %>
+      </p>
+
+      <p>
+        <strong>Patient name:</strong>
+        <%= @hospital_referral.patient_name %>
+      </p>
+
+      <p>
+        <strong>Hospital name:</strong>
+        <%= @hospital_referral.hospital_name %>
+      </p>
+
+      <p>
+        <strong>Referral reason:</strong>
+        <%= @hospital_referral.referral_reason %>
+      </p>
+
+      <p>
+        <strong>Department:</strong>
+        <%= @hospital_referral.department %>
+      </p>
+
+      <%= link_to 'Edit', edit_hospital_referral_path(@hospital_referral) %> |
+      <%= link_to 'Back', hospital_referrals_path %>
+      <hr>
+      <i class="fa fa-download fontawesome"></i> <%= link_to "Print Referral", hospital_referral_path(@hospital_referral, format: "pdf") %>
+    </div>
+    </div>
+  </div>
+</div>

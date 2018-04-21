@@ -1,0 +1,95 @@
+<!-- Rails CSS From: https://stackoverflow.com/questions/11799068/er-method-image-tag-centered -->
+<div class ="container">
+	<div class="row">
+		<div class = "col-md-2">
+			<%= image_tag("customLogo.png", class: "img-responsive center-block" )%>
+		</div>
+		<div class="col-md-6">
+		</div>
+		<div class="col-md-3">
+			<%= image_tag("hse_logo.png", class: "img-responsive center-block")%>			
+		</div>
+	</div>
+			<!--Devise Welcome message from: https://stackoverflow.com/questions/4149326/rails-devise-get-object-of-the-currently-logged-in-user -->
+	<div class="row">
+		<div class = "col-md-12">
+			<h1>Dashboard</h1>
+			<h2>Welcome <br><br> <%= current_user.first_name %> <%= current_user.last_name %> <br><br> <%= current_user.clinic %></h2>
+		</div>
+	</div>
+		<hr>
+<div class="container mdPaddingBtm">
+	<div class ="col-md-4">
+		<%= link_to image_tag("doctor.png", class: "img-responsive center-block"), edit_user_registration_path %>
+	</div>
+	<div class ="col-md-4">
+		<%= link_to image_tag("hospital.png", class: "img-responsive center-block"), patients_path %>
+	</div>
+	<div class ="col-md-4">
+		<%= link_to image_tag("calendar.png", class: "img-responsive center-block"), appointments_path %>	
+	</div>
+</div>
+
+<div class="container lgPaddingBtm" style ="text-align: center;">
+	<div class ="col-md-4">
+		<%= link_to "My Profile", edit_user_registration_path %>
+	</div>
+	<div class ="col-md-4">
+		<%= link_to "Patients", patients_path %>		
+	</div>
+	<div class ="col-md-4">
+		<%= link_to "Scheduled Appointments", appointments_path %>	
+	</div>
+</div>
+<hr>
+	<div class="container mdPaddingBtm">
+		<div class ="col-md-4">
+			<%= link_to image_tag("prescriptions.png", class: "img-responsive center-block") , prescriptions_path %>
+		</div>
+		<div class ="col-md-4">
+			<%= link_to image_tag("pills.png", class: "img-responsive center-block"), "http://www.hpra.ie/homepage/medicines/medicines-information/find-a-medicine" %>
+		</div>
+		<div class ="col-md-4">
+			<%= link_to image_tag("ambulance.png", class: "img-responsive center-block"), hospital_referrals_path %>
+		</div>		
+	</div>
+
+	<div class="container lgPaddingBtm" style ="text-align: center;">
+		<div class ="col-md-4">
+			<%= link_to "Patient Prescriptions", prescriptions_path %>
+		</div>
+		<div class ="col-md-4">
+		<%= link_to "Medicine Search", "http://www.hpra.ie/homepage/medicines/medicines-information/find-a-medicine" %>		
+		</div>
+		<div class ="col-md-4">
+			<%= link_to "Hospital Referrals", hospital_referrals_path %>			
+		</div>
+	</div>
+
+		<hr>
+		<div class="container mdPaddingBtm">
+		<div class ="col-md-4">
+			<%= link_to image_tag("referral.png", class: "img-responsive center-block"), new_hospital_referral_path %>
+		</div>
+		<div class ="col-md-4">
+			<%= link_to image_tag("appointment.png", class: "img-responsive center-block"), new_appointment_path%>
+		</div>
+		<div class ="col-md-4">
+			<%= link_to image_tag("newpatient.png", class: "img-responsive center-block"), new_patient_path %>
+		</div>		
+
+	</div>
+
+	<div class="container lgPaddingBtm" style ="text-align: center;">
+		<div class ="col-md-4">
+			<%= link_to "New Hospital Referral", new_hospital_referral_path %>
+		</div>
+		<div class ="col-md-4">
+		<%= link_to "New Appointment", new_appointment_path %>		
+		</div>
+		<div class ="col-md-4">
+			<%= link_to "New Patient", new_patient_path %>
+		</div>
+	</div>
+
+</div>

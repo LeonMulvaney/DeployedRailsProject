@@ -1,0 +1,57 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), root_path %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Hospital Referrals</h1>
+  <hr>
+  <div class ="row">
+    <div class ="col-md-4">
+      <%= search_form_for @q do |f| %> <!--Search form_for (Ransack Requirement) -->
+      <%= f.label "Search Referrals" %>
+      <!-- Search the db using ransack (If any search field contains), parameters From: https://github.com/activerecord-hackery/ransack --> 
+      <%= f.search_field :date_or_patient_name_or_hospital_name_or_referral_reason_or_department_cont,class: 'form-control input-sm'%>
+      <br>
+      <%= f.submit class: 'btn btn-info fill-div' %>
+      <% end %> <!--End of search by date form -->   
+      <br>
+      <%= link_to "Reset Filter",   hospital_referrals_path, class: 'btn btn-default fill-div' %>
+    </div>
+  </div>
+  <h2><i class="fa fa-sort fontawesome"></i> Sort via Headings</h2>
+  <hr>
+  <div class=row>
+    <div class="col-md-12">
+          <table class = "table table-striped table-hover table-info">
+            <thead>
+            <tr>
+              <th class ="h5"><%= sort_link(@q, :date) %></th>
+              <th class ="h5"><%= sort_link(@q, :patient_name) %></th>
+              <th class ="h5"><%= sort_link(@q, :hospital_name) %></th>
+              <th class ="h5"><%= sort_link(@q, :referral_reason) %></th>
+              <th class ="h5"><%= sort_link(@q, :department) %></th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @hospital_referrals.each do |hospital_referral| %>
+              <tr>
+                <td><%= Date.parse(hospital_referral.date).strftime("%d-%m-%Y")%></td>
+                <td><%= hospital_referral.patient_name %></td>
+                <td><%= hospital_referral.hospital_name %></td>
+                <td><%= hospital_referral.referral_reason %></td>
+                <td><%= hospital_referral.department %></td>
+                <td><%= link_to 'Show', hospital_referral %></td>
+                <td><%= link_to 'Edit', edit_hospital_referral_path(hospital_referral) %></td>
+                <td><%= link_to "Print Referral", hospital_referral_path(hospital_referral, format: "pdf") %></td>
+                <td><%= link_to 'Destroy', hospital_referral, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @patients, class: "pagination"%>
+        <br>
+
+      <i class="fa fa-plus fontawesome"></i> <%= link_to 'New Hospital Referral', new_hospital_referral_path %>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), root_path %>
+<p id="notice"><%= notice %></p>
+
+<h1>Prescriptions</h1>
+
+<div class ="row">
+  <div class ="col-md-4">
+      <%= search_form_for @q do |f| %>
+       <%= f.label "Search Prescriptions" %>
+       <!-- Search the db using ransack, parameters From: https://github.com/activerecord-hackery/ransack -->
+        <%= f.search_field :patient_name_or_medication_name_or_strength_or_frequency_or_duration_or_special_instructions_or_follow_up_cont, class: 'form-control input-sm'%>
+        <%= f.label "Search via Date:" %>
+        <%= f.date_field :date_cont,  class: 'form-control input-sm '%>
+        <br>
+        <%= f.submit class: 'btn btn-success' %>
+        <%= link_to "Reset Filter",   prescriptions_path, class: 'btn btn-default' %>
+      <% end %>
+    </div>
+    <div class ="col-md-5">
+    </div>
+    <div class ="col-md-3">
+    </div>
+</div>
+
+<h2><i class="fa fa-sort fontawesome"></i> Sort via Headings</h2>
+<hr>
+
+<table class = "table table-striped table-hover">
+  <thead>
+    <tr>
+      <!-- Sortable columns From: 
+      https://github.com/activerecord-hackery/ransack -->
+      <th class ="h5"><%= sort_link(@q, :date) %></th>
+      <th class ="h5"><%= sort_link(@q, :patient_name) %></th>
+      <th class ="h5"><%= sort_link(@q, :medication_name) %></th>
+      <th class ="h5"><%= sort_link(@q, :strength) %></th>
+      <th class ="h5"><%= sort_link(@q, :frequency) %></th>
+      <th class ="h5"><%= sort_link(@q, :duration) %> (Days)</th>
+      <th class ="h5"><%= sort_link(@q, :special_instructions) %></th>
+      <th class ="h5"><%= sort_link(@q, :follow_up) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prescriptions.each do |prescription| %>
+      <tr>
+        <td><%= Date.parse(prescription.date).strftime("%d/%m/%Y")%></td>
+        <td><%= prescription.patient_name %></td>
+        <td><%= prescription.medication_name %></td>
+        <td><%= prescription.strength %></td>
+        <td><%= prescription.frequency %></td>
+        <td><%= prescription.duration %></td>
+        <td><%= prescription.special_instructions %></td>
+        <td><%= prescription.follow_up %></td>
+        <td><%= link_to 'View', prescription %></td>
+        <td><%= link_to "Print", prescription_path(prescription, format: "pdf") %></td>
+        <td><%= link_to 'Remove', prescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @patients %>
+
+<hr>
+  <i class="fa fa-plus fontawesome"></i> <%= link_to 'New Prescription', new_prescription_path %>
+

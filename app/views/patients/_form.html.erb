@@ -1,0 +1,46 @@
+<%= form_with(model: patient, local: true) do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="form">
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :patient_name,  class: "form-control" %>
+  </div>
+
+<!--DateField as String From: https://stackoverflow.com/questions/36926588/rails-format-date-field -->
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.date_field :dob,  id: :patient_dob , as: :date, value: form.object.dob,  class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :patient_address ,  class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.number_field :phone, id: :patient_phone ,  class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :allergy_condition %>
+    <%= form.text_field :allergy_condition, id: :patient_allergy_condition ,  class: "form-control"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+

@@ -1,0 +1,12 @@
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Medical App", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right customnav">
+            <li><%= link_to "Dashboard", root_path %></li>
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+        </nav>
+      </div>
+    </header>

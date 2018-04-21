@@ -1,0 +1,56 @@
+<%= form_with(model: prescription, local: true) do |form| %>
+  <% if prescription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prescription.errors.count, "error") %> prohibited this prescription from being saved:</h2>
+
+      <ul>
+      <% prescription.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <%= form.label :date %>
+      <%= form.date_field :date,  id: :prescription_date , value: form.object.date,  class: "form-control"%>
+  </div>
+
+  <div class="field">
+          <%= form.label :patient_name %>
+          <%= form.collection_select(:patient_name, Patient.all.order(:name), :name, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+
+  <div class="field">
+    <%= form.label :medication_name %>
+    <%= form.text_field :medication_name, id: :prescription_medication_name, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strength %>
+    <%= form.text_field :strength, id: :prescription_strength, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "frequency (Days)" %>
+      <%= form.select :frequency, [' ','ONCE A DAY', 'TWICE A DAY', 'THREE TIMES A DAY','FOUR TIMES A DAY', 'FOLLOW SPECIAL INSTRUCTIONS', ] ,{}, {class: " form form-group form-control"}  %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Duration (Days)" %>
+    <%= form.number_field :duration, id: :prescription_duration, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :special_instructions %>
+    <%= form.text_field :special_instructions, id: :prescription_special_instructions, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :follow_up %>
+      <%= form.select :follow_up, [' ','True', 'False', ] ,{}, {class: " form form-group form-control"}  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: 'btn btn-success' %>
+  </div>
+<% end %>

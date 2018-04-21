@@ -1,0 +1,2 @@
+module HospitalReferralsHelper
+end

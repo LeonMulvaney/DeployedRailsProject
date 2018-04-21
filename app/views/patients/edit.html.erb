@@ -1,0 +1,7 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), patients_path %>
+<h1>Editing Patient</h1>
+
+<%= render 'form', patient: @patient %>
+
+<%= link_to '<- Return to Patient Record', @patient ,class: "btn btn-primary"%> 
+

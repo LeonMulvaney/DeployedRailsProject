@@ -1,0 +1,34 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), appointments_path %>
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+			  <strong>Date:</strong>
+			  <%= @appointment.date %>
+			</p>
+
+			<p>
+			  <strong>Time:</strong>
+			  <%= @appointment.time %>
+			</p>
+
+			<p>
+			  <strong>Patient:</strong>
+			  <%= @appointment.patient %>
+			</p>
+
+			<p>
+			  <strong>Visited:</strong>
+			  <%= @appointment.visited %>
+			</p>
+
+			<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+			<%= link_to 'Back', appointments_path %>
+
+		</div>
+	</div>
+</div>
+
+

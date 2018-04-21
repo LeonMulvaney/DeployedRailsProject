@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="col-md-6"> 
+    <%= form_with(model: hospital_referral, local: true) do |form| %>
+      <% if hospital_referral.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(hospital_referral.errors.count, "error") %> prohibited this hospital_referral from being saved:</h2>
+
+          <ul>
+          <% hospital_referral.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+          <div class="field">
+          <%= form.label :date %>
+          <%= form.date_field :date,  id: :hospital_referral_date , value: form.object.date,  class: "form-control"%>
+        </div>
+
+        <div class="field">
+          <%= form.label :patient_name %>
+          <%= form.collection_select(:patient_name, Patient.all.order(:name), :name, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+
+      <div class="field">
+        <%= form.label :hospital_name %>
+        <%= form.text_field :hospital_name, id: :hospital_referral_hospital_name, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :referral_reason %>
+        <%= form.text_area :referral_reason, id: :hospital_referral_referral_reason, class: "form-control"%>
+      </div>
+
+      <div class="field">
+        <%= form.label :department %>
+        <%= form.text_field :department, id: :hospital_referral_department, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+      <%= form.submit "Submit", class: 'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,172 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+ /* Fontawesome icons From: https://richonrails.com/articles/cool-scalable-icons-with-font-awesome */
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+/* universal */
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 10px;
+}
+#logo:hover {
+  color: #87CEEB;
+  text-decoration: none;
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+/*Other */
+.smlPaddingBtm{
+  padding-bottom: 5px;
+}
+
+.mdPaddingBtm{
+  padding-bottom: 15px;
+}
+
+.lgPaddingBtm{
+  padding-bottom: 30px;
+}
+.jumbotron{
+  width:100%;
+  height:25vh;
+  background:#ffffff;
+}
+
+#centerImage a img {
+    display:block;
+    margin:auto;
+}
+
+.form-control {
+}
+
+.half-div{
+  width:50%;
+}
+.fill-div{
+  width:100%;
+}
+
+.fa.fontawesome{
+  font-size: 15px;
+}
+
+/*Styling Pagination From: https://gist.github.com/amuino/172248 */
+.pagination {
+    font-size: 12px;
+}
+
+.pagination > * {
+    margin-right: 0.1em;
+    padding: 0.3em 0.4em;
+}
+
+.pagination a:hover {
+    text-color: #171717;
+}
+
+.pagination a:active {
+    text-shadow: none;
+}
+
+.pagination .current {
+    background: #202020 none repeat scroll 0 0;
+    color: white;
+    text-shadow: 1px 1px 1px #171717;
+}
+
+.pagination .disabled {
+    color: #C0C0C0;
+}
+
+.bluebackgrounddiv{
+  background-color:#195A72;
+}
+
+

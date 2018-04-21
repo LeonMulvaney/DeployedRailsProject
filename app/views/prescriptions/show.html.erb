@@ -1,0 +1,55 @@
+<%= link_to image_tag("back.png", class: "img-responsive"), prescriptions_path %>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <p>
+          <strong>Date:</strong>
+          <%= @prescription.date %>
+        </p>
+
+        <p>
+          <strong>Patient name:</strong>
+          <%= @prescription.patient_name %>
+        </p>
+
+        <p>
+          <strong>Medication name:</strong>
+          <%= @prescription.medication_name %>
+        </p>
+
+        <p>
+          <strong>Strength:</strong>
+          <%= @prescription.strength %>
+        </p>
+
+        <p>
+          <strong>Frequency:</strong>
+          <%= @prescription.frequency %>
+        </p>
+
+        <p>
+          <strong>Duration:</strong>
+          <%= @prescription.duration %>
+        </p>
+
+        <p>
+          <strong>Special instructions:</strong>
+          <%= @prescription.special_instructions %>
+        </p>
+
+        <p>
+          <strong>Follow up:</strong>
+          <%= @prescription.follow_up %>
+        </p>
+
+        <%= link_to 'Edit', edit_prescription_path(@prescription) %> |
+        <%= link_to 'Back', prescriptions_path %>
+      <hr>
+      <i class="fa fa-download fontawesome"></i> <%= link_to "Print Prescription", prescription_path(@prescription, format: "pdf") %>
+
+    </div>
+  </div>
+</div>
+
