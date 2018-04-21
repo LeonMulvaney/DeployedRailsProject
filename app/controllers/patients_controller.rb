@@ -5,7 +5,7 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
       @q = Patient.all.ransack(params[:q])
-      @patients = @q.result(distinct: true).paginate(:per_page => 3, :page => params[:page])
+      @patients = @q.result(distinct: true).paginate(:per_page => 5, :page => params[:page])
       @searchresult = @q.result(distinct: true)
 
         respond_to do |format| #Loop when request is made
