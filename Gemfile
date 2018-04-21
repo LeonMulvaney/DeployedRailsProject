@@ -82,11 +82,11 @@ gem 'autoappointment', :git => "git://github.com/LeonMulvaney/autoappointment.gi
 #https://richonrails.com/articles/charting-with-chartkick
 gem 'chartkick' 
 
-  group :development do
-    gem 'sqlite3'
-  end
+group :development do
+ 	gem 'sqlite3'
+end
 
-  group :production do
-      gem 'pg'
-      gem 'rails_12factor'
-  end
+group :production do
+  	gem 'pg'
+  	gem 'rails_12factor'
+end
