@@ -22,7 +22,7 @@ def show
   respond_to do |format|
     format.html
     format.pdf do
-      pdf = PrescriptionPdf.new(@prescription,@patient, @user_name, @user_clinic, @user_email)
+      pdf = PrescriptionPdf.new(@prescription,@patient, @user_name, @user_clinic, @user_email) #Pass parameters to Custom PDF Class
       send_data pdf.render, filename: "Medical Prescription",
                             type: "application/pdf",
                             disposition: "inline"
@@ -45,9 +45,9 @@ end
   # POST /prescriptions.json
   def create
     @prescription = Prescription.new(prescription_params)
-    @result = Autoappointment.generate(@prescription)
+    @result = Autoappointment.generate(@prescription) #Pass new prescription to Gem and save result as variable
 
-    if @result == "True"
+    if @result == "True" #Check result from Gem, act accordingly
       respond_to do |format|
         if @prescription.save
           format.html { redirect_to @prescription, notice: 'Prescription was successfully created. Follow up appointment scheduled.' }

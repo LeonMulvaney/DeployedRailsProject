@@ -32,13 +32,9 @@ class PatientPdf < Prawn::Document
 
 	def line_item_rows #Create 2d array to store headings, loop through values and then display in table
 		[["Patient Name","Dob","Address","Phone","Allergy/Condition"]] +
-	   	 @patients.map do |patient|
+	   	 @patients.map do |patient| #Loop through instance variable received from controller
 	     [patient.name, Date.parse(patient.dob).strftime("%d/%m/%Y"),patient.address, patient.phone, patient.allergy_condition]
 	    end
 	end
 
 end #End of Class
-
-#@appointments.each do |appointment| #loop through each instance variable and print
-#text "#{appointment.date} #{appointment.time} #{appointment.patient} #{appointment.visited}"
-#end
